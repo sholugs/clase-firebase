@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "877914158339",
+    "firebase_url": "https://pepito2-ed932-default-rtdb.firebaseio.com",
+    "project_id": "pepito2-ed932",
+    "storage_bucket": "pepito2-ed932.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877914158339:android:20cb5e61e47ac5c69c2536",
+        "android_client_info": {
+          "package_name": "com.example.firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgmbZ_l6SXdzrjcUnMaDh-4O_87WT9Pkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
