@@ -153,7 +153,12 @@ public class MainActivity extends AppCompatActivity {
         newUser.setLastName("userLastName");
 
         // Llamar al método createUser() en firebaseUserDAO
-        firebaseUserDAO.createUser(newUser);
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                firebaseUserDAO.createUser(newUser);
+            }
+        });
 
         // Obtener y visualizar los detalles del usuario recién creado
         executorService.execute(new Runnable() {
@@ -186,17 +191,34 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Get all users
-        firebaseUserDAO.getAllUsers(new OnUsersReceivedListener() {
+        executorService.execute(new Runnable() {
             @Override
-            public void onUsersReceived(List<UserDTO> users) {
-                Log.d(TAG, "Users received: " + users);
-            }
+            public void run() {
+                try {
+                    final List<UserDTO> users = firebaseUserDAO.getAllUsersSync();
 
-            @Override
-            public void onError(Exception e) {
-                Log.e(TAG, "Error getting users", e);
+                    // Actualizar la UI en el hilo principal
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d(TAG, "Users received: " + users);
+                        }
+                    });
+                } catch (Exception e) {
+                    Log.e(TAG, "Error getting users", e);
+                }
             }
         });
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (executorService != null) {
+            executorService.shutdown();
+        }
+    }
 }
+*
+*
 * */
