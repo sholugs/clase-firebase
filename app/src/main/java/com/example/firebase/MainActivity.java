@@ -67,14 +67,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        executorService = Executors.newSingleThreadExecutor();
+        executorService = Executors.newFixedThreadPool(2);
 
-        Button calculateButton = findViewById(R.id.calculateButton);
-        calculateButton.setOnClickListener(v -> {
+        Button calculateButton1 = findViewById(R.id.calculateButton1);
+        Button calculateButton2 = findViewById(R.id.calculateButton2);
+
+        calculateButton1.setOnClickListener(v -> {
             executorService.execute(() -> {
-                long fib = calculateFibonacci(45);
+                long fib = calculateFibonacci(40);
                 runOnUiThread(() -> {
-                    Toast.makeText(MainActivity.this, "Fibonacci result: " + fib, Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Fibonacci result 1: " + fib, Toast.LENGTH_LONG).show();
+                });
+            });
+        });
+
+        calculateButton2.setOnClickListener(v -> {
+            executorService.execute(() -> {
+                long fib = calculateFibonacci(42);
+                runOnUiThread(() -> {
+                    Toast.makeText(MainActivity.this, "Fibonacci result 2: " + fib, Toast.LENGTH_LONG).show();
                 });
             });
         });
@@ -116,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Users received: " + users);
     }
 
-    //ejecutar fibonacci de forma recursiva intencionalmente para hacer que tarde una banda
     private long calculateFibonacci(int n) {
         if (n <= 1) {
             return n;

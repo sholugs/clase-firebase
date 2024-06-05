@@ -53,7 +53,17 @@
         android:layout_marginBottom="10dp"/>
 
     <Button
-        android:id="@+id/calculateButton"
+        android:id="@+id/calculateButton1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calculate Fibonacci"
+        android:background="#6200EE"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="10dp"
+        />
+
+    <Button
+        android:id="@+id/calculateButton2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Calculate Fibonacci"
