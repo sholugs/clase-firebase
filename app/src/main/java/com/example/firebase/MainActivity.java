@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private UserManager userManager;
-    private ExecutorService executorService; // Declare the ExecutorService here
+    private ExecutorService executorService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Users received: " + users);
     }
 
+    //ejecutar fibonacci de forma recursiva intencionalmente para hacer que tarde una banda
     private long calculateFibonacci(int n) {
         if (n <= 1) {
             return n;
